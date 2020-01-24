@@ -13,6 +13,9 @@ import { Switch, Route } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
+import { Signin } from 'containers/Signin';
+import { Signup } from 'containers/Signup';
+import { AdminUsers } from 'containers/AdminUsers';
 
 import GlobalStyle from '../../global-styles';
 
@@ -21,6 +24,9 @@ export default function App() {
     <div>
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <Route path="/login" component={Signin} />
+        <Route path="/signup" component={Signup} />
+        <Route path="/admin-users" component={AdminUsers} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

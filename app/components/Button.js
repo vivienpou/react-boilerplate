@@ -8,6 +8,6 @@ const MyButton = props => (
   </Button>
 );
 
-MyButton.propTypes = PropTypes.text.string;
+MyButton.propTypes = { text: PropTypes.string };
 
 export default MyButton;
