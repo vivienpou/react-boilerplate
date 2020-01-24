@@ -41,19 +41,16 @@ const HighlightedCellBase = ({
   children,
   style,
 }) => (
-  <div>
-    <TableCell
-      className={classes.highlightedCell}
-      style={{
-        color: getColor(value),
-        textAlign: tableColumn.align,
-        ...style,
-      }}
-    >
-      {children}
-    </TableCell>
-    <FormattedMessage {...messages.header} />
-  </div>
+  <TableCell
+    className={classes.highlightedCell}
+    style={{
+      color: getColor(value),
+      textAlign: tableColumn.align,
+      ...style,
+    }}
+  >
+    {children}
+  </TableCell>
 );
 
 HighlightedCellBase.propTypes = {

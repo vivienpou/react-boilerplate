@@ -15,18 +15,21 @@ import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import { Signin } from 'containers/Signin';
 import { Signup } from 'containers/Signup';
-import { AdminUsers } from 'containers/AdminUsers';
+import { AdminProducts } from 'containers/AdminProducts';
 
+import PrimarySearchAppBar from 'components/Header';
 import GlobalStyle from '../../global-styles';
 
 export default function App() {
   return (
     <div>
+      <PrimarySearchAppBar />
+
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/login" component={Signin} />
         <Route path="/signup" component={Signup} />
-        <Route path="/admin-users" component={AdminUsers} />
+        <Route path="/admin-products" component={AdminProducts} />
         <Route component={NotFoundPage} />
       </Switch>
       <GlobalStyle />

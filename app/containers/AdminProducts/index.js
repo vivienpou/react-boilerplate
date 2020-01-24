@@ -1,16 +1,15 @@
 /* eslint-disable prettier/prettier */
 /**
  *
- * AdminUsers
+ * AdminProducts
  *
  */
+import * as React from 'react';
 
-import { useState, React } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { FormattedMessage } from 'react-intl';
 import { compose } from 'redux';
-
 import {
   SortingState,
   EditingState,
@@ -47,11 +46,10 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import { withStyles } from '@material-ui/core/styles';
 import ProgressBarCell from 'components/ProgressBarCell';
 
-// import { generateRows, globalSalesValues } from '../../../demo-data/generator';
+import { generateRows, globalSalesValues } from 'demo-data-generator';
 import HighlightedCell from 'components/HighlightedCell';
 import CurrencyTypeProvider from 'components/CurrencyTypeProvider';
 import PercentTypeProvider from 'components/PercentTypeProvider';
-import messages from './messages';
 
 const styles = theme => ({
   lookupEditCell: {
@@ -184,7 +182,7 @@ const EditCell = props => {
 
 const getRowId = row => row.id;
 
-export function AdminUsers() {
+export function AdminProducts() {
   const [columns] = useState([
     { name: 'product', title: 'Product' },
     { name: 'region', title: 'Region' },
@@ -238,13 +236,13 @@ export function AdminUsers() {
         Object.keys(row).length
           ? row
           : {
-            amount: 0,
-            discount: 0,
-            saleDate: new Date().toISOString().split('T')[0],
-            product: availableValues.product[0],
-            region: availableValues.region[0],
-            customer: availableValues.customer[0],
-          },
+              amount: 0,
+              discount: 0,
+              saleDate: new Date().toISOString().split('T')[0],
+              product: availableValues.product[0],
+              region: availableValues.region[0],
+              customer: availableValues.customer[0],
+            },
       ),
     );
 
@@ -284,8 +282,8 @@ export function AdminUsers() {
   };
 
   return (
-    <div>
-      <FormattedMessage {...messages.header} />
+    <div className="AdminProducts">
+      <h2>Product list</h2>
       <Paper>
         <Grid rows={rows} columns={columns} getRowId={getRowId}>
           <SortingState sorting={sorting} onSortingChange={getSorting} />
@@ -341,15 +339,15 @@ export function AdminUsers() {
   );
 }
 
-AdminUsers.propTypes = {
+AdminProducts.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
 LookupEditCellBase.propTypes = {
-  availableColumnValues: PropTypes.number,
-  value: PropTypes.number,
-  onValueChange: PropTypes.number,
-  classes: PropTypes.string,
+  availableColumnValues: PropTypes.array,
+  value: PropTypes.string,
+  onValueChange: PropTypes.func,
+  classes: PropTypes.object,
 };
 
 AddButton.propTypes = { onExecute: PropTypes.func };
@@ -357,7 +355,7 @@ EditButton.propTypes = { onExecute: PropTypes.func };
 DeleteButton.propTypes = { onExecute: PropTypes.func };
 CommitButton.propTypes = { onExecute: PropTypes.func };
 CancelButton.propTypes = { onExecute: PropTypes.func };
-Command.propTypes = { onExecute: PropTypes.func, id: PropTypes.number };
+Command.propTypes = { onExecute: PropTypes.func, id: PropTypes.string };
 Cell.propTypes = { column: PropTypes.object };
 EditCell.propTypes = { column: PropTypes.object };
 
@@ -372,4 +370,4 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(AdminUsers);
+export default compose(withConnect)(AdminProducts);
