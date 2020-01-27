@@ -230,7 +230,7 @@ react-test-renderer                                     15.5.4
 
 - `history` Incompatible
 
-  react-boilerplate@3.4.0 /Users/glen/Documents/JavaScript/Research/react-bp
+  react-boilerplate@3.4.0 /Products/glen/Documents/JavaScript/Research/react-bp
   └── UNMET PEER DEPENDENCY history@4.5.1
 
   npm ERR! peer dep missing: history@^2.0.0 || ^3.0.0, required by react-router-scroll@0.4.1

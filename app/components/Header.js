@@ -79,7 +79,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default function PrimarySearchAppBar() {
-  const [opened, setOpened] = useState(false);
+  const [openLeft, setOpenLeft] = useState(false);
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
@@ -163,7 +163,7 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <LeftMenu status={opened} />
+      <LeftMenu status={true} />
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -174,7 +174,7 @@ export default function PrimarySearchAppBar() {
           >
             <MenuIcon
               onClick={() => {
-                setOpened(!opened);
+                setOpenLeft(true);
               }}
             />
           </IconButton>

@@ -148,7 +148,7 @@ add()
   ✓ doesn't add the third number
 ```
 
-This tells us that something is broken in the add function before any users get
+This tells us that something is broken in the add function before any Products get
 the code! Congratulations, you just saved time and money!
 
 ## Testing Redux Applications

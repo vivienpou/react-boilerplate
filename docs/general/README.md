@@ -84,7 +84,7 @@ _Don't like any of these features? [Click here](remove.md)_
 ## Offline-first
 
 The next frontier in performant web apps: availability without a network
-connection from the instant your users load the app. This is done with a
+connection from the instant your Products load the app. This is done with a
 ServiceWorker and a fallback to AppCache, so this feature even works on older
 browsers!
 
@@ -93,7 +93,7 @@ browsers!
 
 ### Add To Homescreen
 
-After repeat visits to your site, users will get a prompt to add your application
+After repeat visits to your site, Products will get a prompt to add your application
 to their homescreen. Combined with offline caching, this means your web app can
 be used exactly like a native application (without the limitations of an app store).
 
@@ -104,7 +104,7 @@ in `webpack.prod.babel.js` and try it!
 ## Performant Web Font Loading
 
 If you simply use web fonts in your project, the page will stay blank until
-these fonts are downloaded. That means a lot of waiting time in which users
+these fonts are downloaded. That means a lot of waiting time in which Products
 could already read the content.
 
 [FontFaceObserver](https://github.com/bramstein/fontfaceobserver) adds a class

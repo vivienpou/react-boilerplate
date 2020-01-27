@@ -113,7 +113,7 @@ Lots of additional documentation updates thanks to @doaboa, @cheickmec, @nicogre
 
 ### News
 
-Major version updates are finally here! It's been awhile, but we're a small team that's been pushing this for awhile. Thanks to several users' PRs, we were able to cherry-pick a lot from the dev branch to push this release out. We decided because of the amount of dependencies that needed to be updated- we would overshoot some of the changes made on the dev branch and just grab the most pressing ones.
+Major version updates are finally here! It's been awhile, but we're a small team that's been pushing this for awhile. Thanks to several Products' PRs, we were able to cherry-pick a lot from the dev branch to push this release out. We decided because of the amount of dependencies that needed to be updated- we would overshoot some of the changes made on the dev branch and just grab the most pressing ones.
 
 Next steps for us will be revisiting the dev branch, revisiting outstanding PRs and RFCs (like Immutable), and also plugging away at a create-react-app spinoff for react-boilerplate.
 
@@ -325,7 +325,7 @@ website!
   devices in different locations.
 
 - **New server setup**: Thanks to the mighty @grabbou, we now use express.js to
-  give users a production-ready server right out of the box. Hot reloading is
+  give Products a production-ready server right out of the box. Hot reloading is
   still as available as always, but adding a custom API or a non-React page to
   your application is now easier than ever :smile:
 

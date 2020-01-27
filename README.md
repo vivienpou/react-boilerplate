@@ -74,7 +74,7 @@
   <dd>Scalable apps need to support multiple languages, easily add and support multiple languages with `react-intl`.</dd>
 
   <dt>Offline-first</dt>
-  <dd>The next frontier in performant web apps: availability without a network connection from the instant your users load the app.</dd>
+  <dd>The next frontier in performant web apps: availability without a network connection from the instant your Products load the app.</dd>
 
   <dt>Static code analysis</dt>
   <dd>Focus on writing new features without worrying about formatting or code quality. With the right editor setup, your code will automatically be formatted and linted as you work.</dd>
@@ -87,7 +87,7 @@ But wait... there's more!
 
 - _The best test setup:_ Automatically guarantee code quality and non-breaking
   changes. (Seen a react app with 100% test coverage before?)
-- _Native web app:_ Your app's new home? The home screen of your users' phones.
+- _Native web app:_ Your app's new home? The home screen of your Products' phones.
 - _The fastest fonts:_ Say goodbye to vacant text.
 - _Stay fast_: Profile your app's performance from the comfort of your command
   line!

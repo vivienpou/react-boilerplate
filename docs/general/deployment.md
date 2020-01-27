@@ -34,7 +34,7 @@ _Step 7:_ Click on the `Properties` tab, open `Static Website Hosting`, and clic
 
 ## Deploying in a subfolder of an existing server
 
-Suppose you want users to access the app on `https://<host>/web-app`
+Suppose you want Products to access the app on `https://<host>/web-app`
 
 _Step 1:_ Configure webpack to inject necessary environment variables into the app
 

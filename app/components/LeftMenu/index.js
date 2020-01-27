@@ -7,6 +7,7 @@
 // import styled from 'styled-components';
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
@@ -16,6 +17,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import { ClickAwayListener } from '@material-ui/core';
 
 const useStyles = makeStyles({
   list: {
@@ -35,6 +37,13 @@ const LeftMenu = props => {
     bottom: false,
     right: false,
   });
+
+  if (props.status !== state.left) {
+    console.log('use effect magic');
+    setState({ left: props.status });
+  }
+
+  LeftMenu.propTypes = { status: PropTypes.bool };
 
   const toggleDrawer = (side, open) => event => {
     if (
@@ -111,13 +120,15 @@ const LeftMenu = props => {
 
   return (
     <div>
-      <SwipeableDrawer
-        open={props.status}
-        onClose={toggleDrawer('left', false)}
-        onOpen={toggleDrawer('left', true)}
-      >
-        {sideList('left')}
-      </SwipeableDrawer>
+      <ClickAwayListener onClickAway={() => setState({ left: false })}>
+        <SwipeableDrawer
+          open={state.left}
+          onClose={toggleDrawer('left', false)}
+          onOpen={toggleDrawer('left', true)}
+        >
+          {sideList('left')}
+        </SwipeableDrawer>
+      </ClickAwayListener>
     </div>
   );
 };

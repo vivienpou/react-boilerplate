@@ -97,7 +97,7 @@ Webpack requires an entry point to your application. Think of it as a door to yo
 `app/app.js` is one of the biggest files of the boilerplate. It contains all the global setup to make sure your app runs smoothly. Let's break its contents down:
 
 - `@babel/polyfill` is imported. This enables cool stuff like generator functions, `Promise`s, etc.
-- A `history` object is created, which remembers all the browsing history for your app. This is used by the ConnectedRouter to know which pages your users visit. (Very useful for analytics, by the way.)
+- A `history` object is created, which remembers all the browsing history for your app. This is used by the ConnectedRouter to know which pages your Products visit. (Very useful for analytics, by the way.)
 - A redux `store` is instantiated.
 - `ReactDOM.render()` not only renders the [root react component](https://github.com/react-boilerplate/react-boilerplate/blob/master/app/containers/App/index.js) called `<App />`, of your application, but it renders it with `<Provider />`, `<LanguageProvider />` and `<ConnectedRouter />`.
 - Hot module replacement is set up via vanilla [Webpack HMR](https://webpack.js.org/guides/hot-module-replacement/) that makes all the reducers, injected sagas, components, containers, and i18n messages hot reloadable.
@@ -136,7 +136,7 @@ Reselect is a library used for slicing your redux state and providing only the r
 2.  Memoization
 3.  Composability
 
-Imagine an application that shows a list of users. Its redux state tree stores an array of usernames with signatures:
+Imagine an application that shows a list of Products. Its redux state tree stores an array of usernames with signatures:
 
 `{ id: number, username: string, gender: string, age: number }`.
 
@@ -176,7 +176,7 @@ The react-boilerplate building blocks interoperate to produce a seamless applica
 
 ### Workflow
 
-The example application is a simple service which shows a list of repositories for GitHub users using GitHub's public API. You type in a username and the application will show you a list of repositories for that user. It also shows how navigating away to a different route can be done. You can switch between English and German by selecting the desired option from the menu in the footer.
+The example application is a simple service which shows a list of repositories for GitHub Products using GitHub's public API. You type in a username and the application will show you a list of repositories for that user. It also shows how navigating away to a different route can be done. You can switch between English and German by selecting the desired option from the menu in the footer.
 
 #### `<HomePage />`
 
