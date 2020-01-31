@@ -14,7 +14,7 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
-import LeftMenu from './LeftMenu';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -115,8 +115,15 @@ export default function PrimarySearchAppBar() {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      <MenuItem component={Link} to="/login" onClick={handleMenuClose}>
+        Login
+      </MenuItem>
+      <MenuItem component={Link} to="/admin-products" onClick={handleMenuClose}>
+        My products
+      </MenuItem>
+      <MenuItem component={Link} to="/admin-users" onClick={handleMenuClose}>
+        My users
+      </MenuItem>
     </Menu>
   );
 
@@ -163,7 +170,6 @@ export default function PrimarySearchAppBar() {
 
   return (
     <div className={classes.grow}>
-      <LeftMenu status={true} />
       <AppBar position="static">
         <Toolbar>
           <IconButton
@@ -172,11 +178,7 @@ export default function PrimarySearchAppBar() {
             color="inherit"
             aria-label="open drawer"
           >
-            <MenuIcon
-              onClick={() => {
-                setOpenLeft(true);
-              }}
-            />
+            <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             My model App

@@ -1,6 +1,6 @@
 /**
  *
- * Asynchronously loads the component for LeftMenu
+ * Asynchronously loads the component for AdminUsers
  *
  */
 

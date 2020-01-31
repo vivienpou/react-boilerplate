@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 /**
  *
- * AdminProducts
+ * AdminUsers
  *
  */
 import * as React from 'react';
@@ -46,10 +46,9 @@ import CancelIcon from '@material-ui/icons/Cancel';
 import { withStyles } from '@material-ui/core/styles';
 import ProgressBarCell from 'components/ProgressBarCell';
 
-import { generateRows, globalSalesValues } from 'demo-data-generator-products';
+import { generateRows, globalUsersValues } from 'demo-data-generator-users';
 import HighlightedCell from 'components/HighlightedCell';
-import CurrencyTypeProvider from 'components/CurrencyTypeProvider';
-import PercentTypeProvider from 'components/PercentTypeProvider';
+
 
 const styles = theme => ({
   lookupEditCell: {
@@ -121,11 +120,13 @@ const Command = ({ id, onExecute }) => {
 
 const availableValues = {
   // eslint-disable-next-line no-undef
-  product: globalSalesValues.product,
+  firstName: globalUsersValues.firstName,
   // eslint-disable-next-line no-undef
-  region: globalSalesValues.region,
+  lastName: globalUsersValues.lastName,
   // eslint-disable-next-line no-undef
-  customer: globalSalesValues.customer,
+  login: globalUsersValues.login,
+  // eslint-disable-next-line no-undef
+  status: globalUsersValues.status,
 };
 
 const LookupEditCellBase = ({
@@ -182,30 +183,26 @@ const EditCell = props => {
 
 const getRowId = row => row.id;
 
-export function AdminProducts() {
+export function AdminUsers() {
   const [columns] = useState([
-    { name: 'product', title: 'Product' },
-    { name: 'region', title: 'Region' },
-    { name: 'amount', title: 'Sale Amount' },
-    { name: 'discount', title: 'Discount' },
-    { name: 'saleDate', title: 'Sale Date' },
-    { name: 'customer', title: 'Customer' },
+    { name: 'lastName', title: 'Lastname' },
+    { name: 'surName', title: 'Surname' },
+    { name: 'login', title: 'Login' },
+    { name: 'status', title: 'Status' },
   ]);
   const [rows, setRows] = useState(
     // eslint-disable-next-line no-undef
     generateRows({
       // eslint-disable-next-line no-undef
-      columnValues: { id: ({ index }) => index, ...globalSalesValues },
+      columnValues: { id: ({ index }) => index, ...globalUsersValues },
       length: 12,
     }),
   );
   const [tableColumnExtensions] = useState([
-    { columnName: 'product', width: 200 },
-    { columnName: 'region', width: 180 },
-    { columnName: 'amount', width: 180, align: 'right' },
-    { columnName: 'discount', width: 180 },
-    { columnName: 'saleDate', width: 180 },
-    { columnName: 'customer', width: 200 },
+    { columnName: 'lastName', width: 200 },
+    { columnName: 'surName', width: 180 },
+    { columnName: 'login', width: 180 },
+    { columnName: 'status', width: 180 },
   ]);
   const [sorting, getSorting] = useState([]);
   const [editingRowIds, getEditingRowIds] = useState([]);
@@ -215,20 +212,13 @@ export function AdminProducts() {
   const [pageSize, setPageSize] = useState(0);
   const [pageSizes] = useState([5, 10, 0]);
   const [columnOrder, setColumnOrder] = useState([
-    'product',
-    'region',
-    'amount',
-    'discount',
-    'saleDate',
-    'customer',
+    'lastName',
+    'surName',
+    'login',
+    'status',
   ]);
-  const [currencyColumns] = useState(['amount']);
-  const [percentColumns] = useState(['discount']);
   const [leftFixedColumns] = useState([TableEditColumn.COLUMN_TYPE]);
-  const [totalSummaryItems] = useState([
-    { columnName: 'discount', type: 'avg' },
-    { columnName: 'amount', type: 'sum' },
-  ]);
+
 
   const changeAddedRows = value =>
     setAddedRows(
@@ -236,12 +226,10 @@ export function AdminProducts() {
         Object.keys(row).length
           ? row
           : {
-            amount: 0,
-            discount: 0,
-            saleDate: new Date().toISOString().split('T')[0],
-            product: availableValues.product[0],
-            region: availableValues.region[0],
-            customer: availableValues.customer[0],
+            lastName: availableValues.lastName[0],
+            surName: availableValues.surName[0],
+            login: availableValues.login[0],
+            status: availableValues.status[0],
           },
       ),
     );
@@ -282,8 +270,8 @@ export function AdminProducts() {
   };
 
   return (
-    <div className="AdminProducts">
-      <h2>Product list</h2>
+    <div className="AdminUsers">
+      <h2>User list</h2>
       <Paper>
         <Grid rows={rows} columns={columns} getRowId={getRowId}>
           <SortingState sorting={sorting} onSortingChange={getSorting} />
@@ -302,14 +290,11 @@ export function AdminProducts() {
             onAddedRowsChange={changeAddedRows}
             onCommitChanges={commitChanges}
           />
-          <SummaryState totalItems={totalSummaryItems} />
 
           <IntegratedSorting />
           <IntegratedPaging />
           <IntegratedSummary />
 
-          <CurrencyTypeProvider for={currencyColumns} />
-          <PercentTypeProvider for={percentColumns} />
 
           <DragDropProvider />
 
@@ -339,7 +324,7 @@ export function AdminProducts() {
   );
 }
 
-AdminProducts.propTypes = {
+AdminUsers.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
@@ -370,4 +355,4 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(AdminProducts);
+export default compose(withConnect)(AdminUsers);
