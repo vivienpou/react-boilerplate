@@ -14,10 +14,10 @@ import {
   SortingState,
   EditingState,
   PagingState,
-  SummaryState,
   IntegratedPaging,
   IntegratedSorting,
   IntegratedSummary,
+  SummaryState,
 } from '@devexpress/dx-react-grid';
 import {
   Grid,
@@ -48,7 +48,7 @@ import ProgressBarCell from 'components/ProgressBarCell';
 
 import { generateRows, globalUsersValues } from 'demo-data-generator-users';
 import HighlightedCell from 'components/HighlightedCell';
-
+import ErrorBoundary from 'components/ErrorBoundary';
 
 const styles = theme => ({
   lookupEditCell: {
@@ -157,13 +157,6 @@ export const LookupEditCell = withStyles(styles, {
 })(LookupEditCellBase);
 
 const Cell = props => {
-  const { column } = props;
-  if (column.name === 'discount') {
-    return <ProgressBarCell {...props} />;
-  }
-  if (column.name === 'amount') {
-    return <HighlightedCell {...props} />;
-  }
   return <Table.Cell {...props} />;
 };
 
@@ -177,7 +170,7 @@ const EditCell = props => {
         availableColumnValues={availableColumnValues}
       />
     );
-  }
+  }  
   return <TableEditRow.Cell {...props} />;
 };
 
@@ -195,9 +188,10 @@ export function AdminUsers() {
     generateRows({
       // eslint-disable-next-line no-undef
       columnValues: { id: ({ index }) => index, ...globalUsersValues },
-      length: 12,
+      length: 4,
     }),
   );
+
   const [tableColumnExtensions] = useState([
     { columnName: 'lastName', width: 200 },
     { columnName: 'surName', width: 180 },
@@ -219,18 +213,17 @@ export function AdminUsers() {
   ]);
   const [leftFixedColumns] = useState([TableEditColumn.COLUMN_TYPE]);
 
-
   const changeAddedRows = value =>
     setAddedRows(
       value.map(row =>
         Object.keys(row).length
           ? row
           : {
-            lastName: availableValues.lastName[0],
-            surName: availableValues.surName[0],
-            login: availableValues.login[0],
-            status: availableValues.status[0],
-          },
+              lastName: availableValues.lastName[0],
+              surName: availableValues.surName[0],
+              login: availableValues.login[0],
+              status: availableValues.status[0],
+            },
       ),
     );
 
@@ -268,57 +261,62 @@ export function AdminUsers() {
     }
     setRows(changedRows);
   };
+  const [totalSummaryItems] = useState([
+    { columnName: 'discount', type: 'avg' },
+    { columnName: 'amount', type: 'sum' },
+  ]);
 
   return (
     <div className="AdminUsers">
       <h2>User list</h2>
       <Paper>
-        <Grid rows={rows} columns={columns} getRowId={getRowId}>
-          <SortingState sorting={sorting} onSortingChange={getSorting} />
-          <PagingState
-            currentPage={currentPage}
-            onCurrentPageChange={setCurrentPage}
-            pageSize={pageSize}
-            onPageSizeChange={setPageSize}
-          />
-          <EditingState
-            editingRowIds={editingRowIds}
-            onEditingRowIdsChange={getEditingRowIds}
-            rowChanges={rowChanges}
-            onRowChangesChange={setRowChanges}
-            addedRows={addedRows}
-            onAddedRowsChange={changeAddedRows}
-            onCommitChanges={commitChanges}
-          />
+        <ErrorBoundary>
+          <Grid rows={rows} columns={columns} getRowId={getRowId}>
+            <SortingState sorting={sorting} onSortingChange={getSorting} />
+            <PagingState
+              currentPage={currentPage}
+              onCurrentPageChange={setCurrentPage}
+              pageSize={pageSize}
+              onPageSizeChange={setPageSize}
+            />
+            <EditingState
+              editingRowIds={editingRowIds}
+              onEditingRowIdsChange={getEditingRowIds}
+              rowChanges={rowChanges}
+              onRowChangesChange={setRowChanges}
+              addedRows={addedRows}
+              onAddedRowsChange={changeAddedRows}
+              onCommitChanges={commitChanges}
+            />
+            <SummaryState totalItems={totalSummaryItems} />
 
-          <IntegratedSorting />
-          <IntegratedPaging />
-          <IntegratedSummary />
+            <IntegratedSorting />
+            <IntegratedPaging />
+            <IntegratedSummary />
 
-
-          <DragDropProvider />
-
-          <Table
-            columnExtensions={tableColumnExtensions}
-            cellComponent={Cell}
-          />
-          <TableColumnReordering
-            order={columnOrder}
-            onOrderChange={setColumnOrder}
-          />
-          <TableHeaderRow showSortingControls />
-          <TableEditRow cellComponent={EditCell} />
-          <TableEditColumn
-            width={170}
-            showAddCommand={!addedRows.length}
-            showEditCommand
-            showDeleteCommand
-            commandComponent={Command}
-          />
-          <TableSummaryRow />
-          <TableFixedColumns leftColumns={leftFixedColumns} />
-          <PagingPanel pageSizes={pageSizes} />
-        </Grid>
+            <DragDropProvider />
+            <Table
+              columnExtensions={tableColumnExtensions}
+              cellComponent={Cell}
+            />
+            <TableColumnReordering
+              order={columnOrder}
+              onOrderChange={setColumnOrder}
+            />
+            <TableHeaderRow showSortingControls />
+            <TableEditRow cellComponent={EditCell} />
+            <TableEditColumn
+              width={170}
+              showAddCommand={!addedRows.length}
+              showEditCommand
+              showDeleteCommand
+              commandComponent={Command}
+            />
+            <TableSummaryRow />
+            <TableFixedColumns leftColumns={leftFixedColumns} />
+            <PagingPanel pageSizes={pageSizes} />
+          </Grid>
+        </ErrorBoundary>
       </Paper>
     </div>
   );

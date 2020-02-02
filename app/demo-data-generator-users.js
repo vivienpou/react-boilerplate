@@ -1,10 +1,17 @@
 import randomSeed from './random';
 
 export const globalUsersValues = {
-  surName: ['Suzanne', 'Lola', 'Ginette', 'Lolé', 'Popeye', 'Jean'],
   lastName: ['Dufour', 'Duratier', 'Manjeur', 'Rougeolle', 'Pouet', 'Danger'],
+  surName: ['Suzanne', 'Lola', 'Ginette', 'Lolé', 'Popeye', 'Jean'],
   login: ['dudu', 'durat', 'manman', 'rourou', 'poupou', 'dandan'],
   status: ['user', 'user', 'admin', 'user', 'user', 'user'],
+};
+
+export const defaultColumnValues = {
+  lastName: 'valjean',
+  surName: 'jean',
+  login: 'jeannot',
+  status: 'user',
 };
 
 export function generateRows({

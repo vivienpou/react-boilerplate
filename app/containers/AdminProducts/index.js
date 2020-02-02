@@ -50,6 +50,7 @@ import { generateRows, globalSalesValues } from 'demo-data-generator-products';
 import HighlightedCell from 'components/HighlightedCell';
 import CurrencyTypeProvider from 'components/CurrencyTypeProvider';
 import PercentTypeProvider from 'components/PercentTypeProvider';
+import ErrorBoundary from 'components/ErrorBoundary';
 
 const styles = theme => ({
   lookupEditCell: {
@@ -236,13 +237,13 @@ export function AdminProducts() {
         Object.keys(row).length
           ? row
           : {
-            amount: 0,
-            discount: 0,
-            saleDate: new Date().toISOString().split('T')[0],
-            product: availableValues.product[0],
-            region: availableValues.region[0],
-            customer: availableValues.customer[0],
-          },
+              amount: 0,
+              discount: 0,
+              saleDate: new Date().toISOString().split('T')[0],
+              product: availableValues.product[0],
+              region: availableValues.region[0],
+              customer: availableValues.customer[0],
+            },
       ),
     );
 
@@ -285,55 +286,57 @@ export function AdminProducts() {
     <div className="AdminProducts">
       <h2>Product list</h2>
       <Paper>
-        <Grid rows={rows} columns={columns} getRowId={getRowId}>
-          <SortingState sorting={sorting} onSortingChange={getSorting} />
-          <PagingState
-            currentPage={currentPage}
-            onCurrentPageChange={setCurrentPage}
-            pageSize={pageSize}
-            onPageSizeChange={setPageSize}
-          />
-          <EditingState
-            editingRowIds={editingRowIds}
-            onEditingRowIdsChange={getEditingRowIds}
-            rowChanges={rowChanges}
-            onRowChangesChange={setRowChanges}
-            addedRows={addedRows}
-            onAddedRowsChange={changeAddedRows}
-            onCommitChanges={commitChanges}
-          />
-          <SummaryState totalItems={totalSummaryItems} />
+        <ErrorBoundary>
+          <Grid rows={rows} columns={columns} getRowId={getRowId}>
+            <SortingState sorting={sorting} onSortingChange={getSorting} />
+            <PagingState
+              currentPage={currentPage}
+              onCurrentPageChange={setCurrentPage}
+              pageSize={pageSize}
+              onPageSizeChange={setPageSize}
+            />
+            <EditingState
+              editingRowIds={editingRowIds}
+              onEditingRowIdsChange={getEditingRowIds}
+              rowChanges={rowChanges}
+              onRowChangesChange={setRowChanges}
+              addedRows={addedRows}
+              onAddedRowsChange={changeAddedRows}
+              onCommitChanges={commitChanges}
+            />
+            <SummaryState totalItems={totalSummaryItems} />
 
-          <IntegratedSorting />
-          <IntegratedPaging />
-          <IntegratedSummary />
+            <IntegratedSorting />
+            <IntegratedPaging />
+            <IntegratedSummary />
 
-          <CurrencyTypeProvider for={currencyColumns} />
-          <PercentTypeProvider for={percentColumns} />
+            <CurrencyTypeProvider for={currencyColumns} />
+            <PercentTypeProvider for={percentColumns} />
 
-          <DragDropProvider />
+            <DragDropProvider />
 
-          <Table
-            columnExtensions={tableColumnExtensions}
-            cellComponent={Cell}
-          />
-          <TableColumnReordering
-            order={columnOrder}
-            onOrderChange={setColumnOrder}
-          />
-          <TableHeaderRow showSortingControls />
-          <TableEditRow cellComponent={EditCell} />
-          <TableEditColumn
-            width={170}
-            showAddCommand={!addedRows.length}
-            showEditCommand
-            showDeleteCommand
-            commandComponent={Command}
-          />
-          <TableSummaryRow />
-          <TableFixedColumns leftColumns={leftFixedColumns} />
-          <PagingPanel pageSizes={pageSizes} />
-        </Grid>
+            <Table
+              columnExtensions={tableColumnExtensions}
+              cellComponent={Cell}
+            />
+            <TableColumnReordering
+              order={columnOrder}
+              onOrderChange={setColumnOrder}
+            />
+            <TableHeaderRow showSortingControls />
+            <TableEditRow cellComponent={EditCell} />
+            <TableEditColumn
+              width={170}
+              showAddCommand={!addedRows.length}
+              showEditCommand
+              showDeleteCommand
+              commandComponent={Command}
+            />
+            <TableSummaryRow />
+            <TableFixedColumns leftColumns={leftFixedColumns} />
+            <PagingPanel pageSizes={pageSizes} />
+          </Grid>
+        </ErrorBoundary>
       </Paper>
     </div>
   );
