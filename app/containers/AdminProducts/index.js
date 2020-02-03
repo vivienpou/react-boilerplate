@@ -237,13 +237,13 @@ export function AdminProducts() {
         Object.keys(row).length
           ? row
           : {
-              amount: 0,
-              discount: 0,
-              saleDate: new Date().toISOString().split('T')[0],
-              product: availableValues.product[0],
-              region: availableValues.region[0],
-              customer: availableValues.customer[0],
-            },
+            amount: 0,
+            discount: 0,
+            saleDate: new Date().toISOString().split('T')[0],
+            product: availableValues.product[0],
+            region: availableValues.region[0],
+            customer: availableValues.customer[0],
+          },
       ),
     );
 

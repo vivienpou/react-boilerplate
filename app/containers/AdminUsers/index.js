@@ -156,9 +156,7 @@ export const LookupEditCell = withStyles(styles, {
   name: 'ControlledModeDemo',
 })(LookupEditCellBase);
 
-const Cell = props => {
-  return <Table.Cell {...props} />;
-};
+const Cell = props => <Table.Cell {...props} />;
 
 const EditCell = props => {
   const { column } = props;
@@ -219,11 +217,11 @@ export function AdminUsers() {
         Object.keys(row).length
           ? row
           : {
-              lastName: availableValues.lastName[0],
-              surName: availableValues.surName[0],
-              login: availableValues.login[0],
-              status: availableValues.status[0],
-            },
+            lastName: availableValues.lastName[0],
+            surName: availableValues.surName[0],
+            login: availableValues.login[0],
+            status: availableValues.status[0],
+          },
       ),
     );
 
