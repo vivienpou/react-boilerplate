@@ -49,6 +49,7 @@ import ProgressBarCell from 'components/ProgressBarCell';
 import { generateRows, globalUsersValues } from 'demo-data-generator-users';
 import HighlightedCell from 'components/HighlightedCell';
 import ErrorBoundary from 'components/ErrorBoundary';
+import SimpleSnackbar from 'components/Snackbar';
 
 const styles = theme => ({
   lookupEditCell: {
@@ -168,7 +169,7 @@ const EditCell = props => {
         availableColumnValues={availableColumnValues}
       />
     );
-  }  
+  }
   return <TableEditRow.Cell {...props} />;
 };
 
@@ -177,7 +178,7 @@ const getRowId = row => row.id;
 export function AdminUsers() {
   const [columns] = useState([
     { name: 'lastName', title: 'Lastname' },
-    { name: 'surName', title: 'Surname' },
+    { name: 'firstName', title: 'firstName' },
     { name: 'login', title: 'Login' },
     { name: 'status', title: 'Status' },
   ]);
@@ -192,7 +193,7 @@ export function AdminUsers() {
 
   const [tableColumnExtensions] = useState([
     { columnName: 'lastName', width: 200 },
-    { columnName: 'surName', width: 180 },
+    { columnName: 'firstName', width: 180 },
     { columnName: 'login', width: 180 },
     { columnName: 'status', width: 180 },
   ]);
@@ -205,11 +206,13 @@ export function AdminUsers() {
   const [pageSizes] = useState([5, 10, 0]);
   const [columnOrder, setColumnOrder] = useState([
     'lastName',
-    'surName',
+    'firstName',
     'login',
     'status',
   ]);
   const [leftFixedColumns] = useState([TableEditColumn.COLUMN_TYPE]);
+  const [open, setOpen] = React.useState(false);
+  const [message, setMessage] = React.useState('default message');
 
   const changeAddedRows = value =>
     setAddedRows(
@@ -217,11 +220,11 @@ export function AdminUsers() {
         Object.keys(row).length
           ? row
           : {
-            lastName: availableValues.lastName[0],
-            surName: availableValues.surName[0],
-            login: availableValues.login[0],
-            status: availableValues.status[0],
-          },
+              lastName: availableValues.lastName[0],
+              firstName: availableValues.firstName[0],
+              login: availableValues.login[0],
+              status: availableValues.status[0],
+            },
       ),
     );
 
@@ -248,14 +251,20 @@ export function AdminUsers() {
           ...row,
         })),
       ];
+      setOpen(true);
+      setMessage('You successfully created it.');
     }
     if (changed) {
       changedRows = rows.map(row =>
         changed[row.id] ? { ...row, ...changed[row.id] } : row,
       );
+      setOpen(true);
+      setMessage('You successfully updated it.');
     }
     if (deleted) {
       changedRows = deleteRows(deleted);
+      setOpen(true);
+      setMessage('You successfully deleted it.');
     }
     setRows(changedRows);
   };
@@ -267,6 +276,9 @@ export function AdminUsers() {
   return (
     <div className="AdminUsers">
       <h2>User list</h2>
+      <React.Fragment>
+        <SimpleSnackbar opened={open} message={message} severity="success" />
+      </React.Fragment>
       <Paper>
         <ErrorBoundary>
           <Grid rows={rows} columns={columns} getRowId={getRowId}>

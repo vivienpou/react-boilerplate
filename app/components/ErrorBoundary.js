@@ -1,6 +1,6 @@
-import React, { Fragment, Component } from 'react';
-import Snackbar from '@material-ui/core/Snackbar';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types'; // ES6
+import SimpleSnackbar from './Snackbar';
 
 class ErrorBoundary extends React.Component {
   constructor(props) {
@@ -8,6 +8,7 @@ class ErrorBoundary extends React.Component {
     this.state = {
       hasError: false,
       error: '',
+      opened: false,
     };
   }
 
@@ -18,6 +19,7 @@ class ErrorBoundary extends React.Component {
   componentDidCatch(error, errorInfo) {
     this.setState((prevState, props) => ({
       error: prevState.error + error,
+      opened: !prevState.opened,
     }));
   }
 
@@ -25,21 +27,26 @@ class ErrorBoundary extends React.Component {
     if (reason === 'clickaway') {
       return;
     }
+    this.setState({ opened: false });
+  };
 
-    // setState remaining
+  handleOpen = () => {
+    if (this.state.error) {
+      this.setState({
+        opened: true,
+      });
+    }
   };
 
   render() {
-    // You can render any custom fallback UI
     if (this.state.hasError) {
       return (
         <Fragment>
           {this.state.error === null && this.props.children}
-          <Snackbar
-            className=" toto"
-            open={Boolean(this.state.error)}
+          <SimpleSnackbar
+            opened={this.state.opened}
             message={this.state.error !== null && this.state.error.toString()}
-            onClose={this.handleClose()}
+            severity="error"
           />
         </Fragment>
       );

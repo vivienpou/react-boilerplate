@@ -2,14 +2,14 @@ import randomSeed from './random';
 
 export const globalUsersValues = {
   lastName: ['Dufour', 'Duratier', 'Manjeur', 'Rougeolle', 'Pouet', 'Danger'],
-  surName: ['Suzanne', 'Lola', 'Ginette', 'Lolé', 'Popeye', 'Jean'],
+  firstName: ['Suzanne', 'Lola', 'Ginette', 'Lolé', 'Popeye', 'Jean'],
   login: ['dudu', 'durat', 'manman', 'rourou', 'poupou', 'dandan'],
   status: ['user', 'user', 'admin', 'user', 'user', 'user'],
 };
 
 export const defaultColumnValues = {
   lastName: 'valjean',
-  surName: 'jean',
+  firstName: 'jean',
   login: 'jeannot',
   status: 'user',
 };
