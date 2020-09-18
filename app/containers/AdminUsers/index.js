@@ -220,11 +220,11 @@ export function AdminUsers() {
         Object.keys(row).length
           ? row
           : {
-              lastName: availableValues.lastName[0],
-              firstName: availableValues.firstName[0],
-              login: availableValues.login[0],
-              status: availableValues.status[0],
-            },
+            lastName: availableValues.lastName[0],
+            firstName: availableValues.firstName[0],
+            login: availableValues.login[0],
+            status: availableValues.status[0],
+          },
       ),
     );
 

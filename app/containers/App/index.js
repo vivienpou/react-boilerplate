@@ -27,18 +27,18 @@ export default function App() {
     <div>
       <BrowserRouter>
         <Switch>
-          <Route path="/login" component={Signin}/>
-          <Route path="/signup" component={Signup}/>
+          <Route path="/login" component={Signin} />
+          <Route path="/signup" component={Signup} />
           <Fragment>
-            <PrimarySearchAppBar/>
-            <CustomSeparator/>
-            <Route path="/admin-products" component={AdminProducts}/>
-            <Route path="/admin-users" component={AdminUsers}/>
-            <Route exact path="/" component={HomePage}/>
+            <PrimarySearchAppBar />
+            <CustomSeparator />
+            <Route path="/admin-products" component={AdminProducts} />
+            <Route path="/admin-users" component={AdminUsers} />
+            <Route exact path="/" component={HomePage} />
           </Fragment>
-          <Route component={NotFoundPage}/>
+          <Route component={NotFoundPage} />
         </Switch>
-        <GlobalStyle/>
+        <GlobalStyle />
       </BrowserRouter>
     </div>
   );
