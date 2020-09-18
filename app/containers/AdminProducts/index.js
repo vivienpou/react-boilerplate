@@ -284,7 +284,6 @@ export function AdminProducts() {
 
   return (
     <div className="AdminProducts">
-      <h2>Product list</h2>
       <Paper>
         <ErrorBoundary>
           <Grid rows={rows} columns={columns} getRowId={getRowId}>

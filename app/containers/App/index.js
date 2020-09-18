@@ -8,8 +8,8 @@
  *
  */
 
-import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import React, { Fragment } from 'react';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -18,6 +18,7 @@ import { Signup } from 'containers/Signup';
 import { AdminProducts } from 'containers/AdminProducts';
 import { AdminUsers } from 'containers/AdminUsers';
 import PrimarySearchAppBar from 'components/Header';
+import CustomSeparator from '../../components/BreadCrumb';
 
 import GlobalStyle from '../../global-styles';
 
@@ -25,16 +26,19 @@ export default function App() {
   return (
     <div>
       <BrowserRouter>
-        <PrimarySearchAppBar />
         <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/login" component={Signin} />
-          <Route path="/signup" component={Signup} />
-          <Route path="/admin-products" component={AdminProducts} />
-          <Route path="/admin-users" component={AdminUsers} />
-          <Route component={NotFoundPage} />
+          <Route path="/login" component={Signin}/>
+          <Route path="/signup" component={Signup}/>
+          <Fragment>
+            <PrimarySearchAppBar/>
+            <CustomSeparator/>
+            <Route path="/admin-products" component={AdminProducts}/>
+            <Route path="/admin-users" component={AdminUsers}/>
+            <Route exact path="/" component={HomePage}/>
+          </Fragment>
+          <Route component={NotFoundPage}/>
         </Switch>
-        <GlobalStyle />
+        <GlobalStyle/>
       </BrowserRouter>
     </div>
   );

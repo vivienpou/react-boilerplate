@@ -7,7 +7,6 @@
 
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import MyButton from 'components/Button';
 import messages from './messages';
 
 export default function HomePage() {
@@ -16,7 +15,6 @@ export default function HomePage() {
       <h1>
         <FormattedMessage {...messages.header} />
       </h1>
-      <MyButton text="create app model" />
     </div>
   );
 }

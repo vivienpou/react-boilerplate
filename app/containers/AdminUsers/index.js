@@ -275,7 +275,6 @@ export function AdminUsers() {
 
   return (
     <div className="AdminUsers">
-      <h2>User list</h2>
       <React.Fragment>
         <SimpleSnackbar opened={open} message={message} severity="success" />
       </React.Fragment>
