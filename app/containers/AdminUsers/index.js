@@ -214,19 +214,19 @@ export function AdminUsers() {
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState('default message');
 
-  const changeAddedRows = value =>
-    setAddedRows(
-      value.map(row =>
-        Object.keys(row).length
-          ? row
-          : {
-            lastName: availableValues.lastName[0],
-            firstName: availableValues.firstName[0],
-            login: availableValues.login[0],
-            status: availableValues.status[0],
-          },
-      ),
-    );
+  // const changeAddedRows = value =>
+  //   setAddedRows(
+  //     value.map(row =>
+  //       Object.keys(row).length
+  //         ? row
+  //         : {
+  //           lastName: availableValues.lastName[0],
+  //           firstName: availableValues.firstName[0],
+  //           login: availableValues.login[0],
+  //           status: availableValues.status[0],
+  //         },
+  //     ),
+  //   );
 
   const deleteRows = deletedIds => {
     const rowsForDelete = rows.slice();

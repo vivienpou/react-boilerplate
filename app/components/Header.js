@@ -155,7 +155,6 @@ export default function PrimarySearchAppBar() {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
-
   const handleDrawerOpen = () => {
     setOpenLeft(true);
   };
@@ -201,14 +200,22 @@ export default function PrimarySearchAppBar() {
     >
       <div className={classes.drawerHeader}>
         <IconButton onClick={handleDrawerClose}>
-          {theme.direction === 'ltr' ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
+          {theme.direction === 'ltr' ? (
+            <ChevronLeftIcon />
+          ) : (
+            <ChevronRightIcon />
+          )}
         </IconButton>
       </div>
       <List>
         <ListItem component={Link} to="/login" onClick={handleMenuClose}>
           Login
         </ListItem>
-        <ListItem component={Link} to="/admin-products" onClick={handleMenuClose}>
+        <ListItem
+          component={Link}
+          to="/admin-products"
+          onClick={handleMenuClose}
+        >
           My products
         </ListItem>
         <ListItem component={Link} to="/admin-users" onClick={handleMenuClose}>
@@ -236,7 +243,7 @@ export default function PrimarySearchAppBar() {
           aria-haspopup="true"
           color="inherit"
         >
-          <AccountCircle/>
+          <AccountCircle />
         </IconButton>
         <p>Profile</p>
       </MenuItem>
@@ -254,14 +261,14 @@ export default function PrimarySearchAppBar() {
             aria-label="open drawer"
             onClick={handleDrawerOpen}
           >
-            <MenuIcon/>
+            <MenuIcon />
           </IconButton>
           <Typography className={classes.title} variant="h6" noWrap>
             React testing App
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon/>
+              <SearchIcon />
             </div>
             <InputBase
               placeholder="Search…"
@@ -272,7 +279,7 @@ export default function PrimarySearchAppBar() {
               inputProps={{ 'aria-label': 'search' }}
             />
           </div>
-          <div className={classes.grow}/>
+          <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <IconButton
               edge="end"
@@ -282,7 +289,7 @@ export default function PrimarySearchAppBar() {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle/>
+              <AccountCircle />
             </IconButton>
           </div>
           <div className={classes.sectionMobile}>
@@ -293,7 +300,7 @@ export default function PrimarySearchAppBar() {
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <MoreIcon/>
+              <MoreIcon />
             </IconButton>
           </div>
         </Toolbar>

@@ -122,11 +122,11 @@ const Command = ({ id, onExecute }) => {
 
 const availableValues = {
   // eslint-disable-next-line no-undef
-  product: globalSalesValues.product,
+  product: [],
   // eslint-disable-next-line no-undef
-  region: globalSalesValues.region,
+  region: [],
   // eslint-disable-next-line no-undef
-  customer: globalSalesValues.customer,
+  customer: [],
 };
 
 const LookupEditCellBase = ({

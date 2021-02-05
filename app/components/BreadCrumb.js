@@ -23,35 +23,34 @@ const useStyles = makeStyles(theme =>
 
 export default function CustomSeparator() {
   const classes = useStyles();
-  const location =  useLocation();
+  const location = useLocation();
   return (
     <div className={classes.root}>
       <Breadcrumbs
-        separator={<NavigateNextIcon fontSize="small"/>}
+        separator={<NavigateNextIcon fontSize="small" />}
         aria-label="breadcrumb"
       >
-        <NavLink
-          color="inherit"
-          to="/"
-          activeStyle={{ color: 'red' }}
-        >
-          <HomeIcon></HomeIcon>
+        <NavLink color="inherit" to="/" activeStyle={{ color: 'red' }}>
+          <HomeIcon />
         </NavLink>
-        {location.pathname === '/admin-users' ? (<NavLink
-          color="inherit"
-          to="/admin-users"
-          activeStyle={{ color: 'red' }}
-        >
-          Users
-        </NavLink>) : null}
-        {location.pathname === '/admin-products' ? (<NavLink
-          color="inherit"
-          to="/admin-products"
-          activeStyle={{ color: 'red' }}
-        >
-          Products
-        </NavLink>) : null}
-
+        {location.pathname === '/admin-users' ? (
+          <NavLink
+            color="inherit"
+            to="/admin-users"
+            activeStyle={{ color: 'red' }}
+          >
+            Users
+          </NavLink>
+        ) : null}
+        {location.pathname === '/admin-products' ? (
+          <NavLink
+            color="inherit"
+            to="/admin-products"
+            activeStyle={{ color: 'red' }}
+          >
+            Products
+          </NavLink>
+        ) : null}
       </Breadcrumbs>
     </div>
   );
